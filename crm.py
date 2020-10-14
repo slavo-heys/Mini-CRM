@@ -34,48 +34,53 @@ def wyczysc_pola_2():
     e14.delete(0, END)
     e15.delete(0, END)
     e16.delete(0, END)
-    
+# zapis danych do bazy
+
+
 def zapisz_nowego_klienta():
-    conn=sqlite3.connect('CRM.db')
+    conn = sqlite3.connect('CRM.db')
     c = conn.cursor()
     c.execute("INSERT INTO ludzie VALUES(NULL, :imie, :nazwisko, :pesel, :nip, :ulica, :nr_ulicy, :nr_mieszkania, :miasto, :kod, :email, :telefon, :uwagi)",
-    {
-        'imie': imieKlient.get(),
-        'nazwisko': nazwiskoKlient.get(),
-        'pesel': peselKlient.get(),
-        'nip': nipKlient.get(),
-        'ulica': ulicaKlient.get(),
-        'nr_ulicy': nrUlicyKlient.get(),
-        'nr_mieszkania': nrMieszkaniaKlient.get(),
-        'miasto': miastoKlient.get(),
-        'kod': kodKlient.get(),
-        'email': emailKlient.get(),
-        'telefon': telefonKlient.get(),
-        'uwagi': uwagiKlient.get()
-    })
+              {
+                  'imie': imieKlient.get(),
+                  'nazwisko': nazwiskoKlient.get(),
+                  'pesel': peselKlient.get(),
+                  'nip': nipKlient.get(),
+                  'ulica': ulicaKlient.get(),
+                  'nr_ulicy': nrUlicyKlient.get(),
+                  'nr_mieszkania': nrMieszkaniaKlient.get(),
+                  'miasto': miastoKlient.get(),
+                  'kod': kodKlient.get(),
+                  'email': emailKlient.get(),
+                  'telefon': telefonKlient.get(),
+                  'uwagi': uwagiKlient.get()
+              })
     conn.commit()
     conn.close()
     messagebox.showinfo("Informacja", "Nowy klient wpisany\n do bazy")
-    e5.delete(0,END)
-    e6.delete(0,END)
-    e7.delete(0,END)
-    e8.delete(0,END)
-    e9.delete(0,END)
-    e10.delete(0,END)
-    e11.delete(0,END)
-    e12.delete(0,END)
-    e13.delete(0,END)
-    e14.delete(0,END)
-    e15.delete(0,END)
-    e16.delete(0,END)
+    e5.delete(0, END)
+    e6.delete(0, END)
+    e7.delete(0, END)
+    e8.delete(0, END)
+    e9.delete(0, END)
+    e10.delete(0, END)
+    e11.delete(0, END)
+    e12.delete(0, END)
+    e13.delete(0, END)
+    e14.delete(0, END)
+    e15.delete(0, END)
+    e16.delete(0, END)
+
+# wyszukiwanie klienta w bazie
+
 
 def wyszukaj_klienta():
     ramka3 = tk.LabelFrame(root, text="Wynik wyszukiwania", padx=10, pady=10)
     ramka3.pack(padx=30, side=RIGHT)
-    x_imie=szuk_imie.get()
-    x_nazwisko=szuk_nazwisko.get()
-    x_pesel=szuk_pesel.get()
-    x_nip=szuk_nip.get()
+    x_imie = szuk_imie.get()
+    x_nazwisko = szuk_nazwisko.get()
+    x_pesel = szuk_pesel.get()
+    x_nip = szuk_nip.get()
 
     kolorKlienta = "green"
     fontKlienta = "Arial"
@@ -106,36 +111,47 @@ def wyszukaj_klienta():
     p28 = tk.Label(ramka3, text="Uwagi:", font=(
         fontKlienta, czcionkaKlienta), fg=kolorKlienta).grid(row=12, column=0, sticky=W)
 
-    conn=sqlite3.connect('CRM.db')
-    c=conn.cursor()
+    conn = sqlite3.connect('CRM.db')
+    c = conn.cursor()
     c.execute('SELECT * , oid FROM ludzie')
     records = c.fetchall()
     for r in records:
-        imieK=str(r[1])
-        nazwiskoK=str(r[2])
-        peselK=str(r[3])
-        nipK=str(r[4])
-        ulicaK=str(r[5])
-        
-        if imieK==x_imie or nazwiskoK==x_nazwisko or peselK==x_pesel or nipKlient==x_nip:
-            linia1=tk.Label(ramka3,text=imieK, font=("Arial", 13, "italic", "bold"), fg="black")
-            linia2=tk.Label(ramka3,text=nazwiskoK, font=("Arial", 13, "italic"), fg="black")
-            linia3=tk.Label(ramka3,text=peselK, font=("Arial", 13, "italic"), fg="black")
-            linia4=tk.Label(ramka3,text=nipK, font=("Arial", 13, "italic"), fg="black")
-            linia5=tk.Label(ramka3,text=str(r[5]), font=("Arial", 13, "italic"), fg="black")
-            linia6=tk.Label(ramka3,text=str(r[6]), font=("Arial", 13, "italic"), fg="black")
-            linia7=tk.Label(ramka3,text=str(r[7]), font=("Arial", 13, "italic"), fg="black")
-            linia8=tk.Label(ramka3,text=str(r[8]), font=("Arial", 13, "italic"), fg="black")
-            linia9=tk.Label(ramka3,text=str(r[9]), font=("Arial", 13, "italic"), fg="black")
-            linia10=tk.Label(ramka3,text=str(r[10]), font=("Arial", 13, "italic"), fg="black")
-            linia11=tk.Label(ramka3,text=str(r[11]), font=("Arial", 13, "italic"), fg="black")
+        imieK = str(r[1])
+        nazwiskoK = str(r[2])
+        peselK = str(r[3])
+        nipK = str(r[4])
+        ulicaK = str(r[5])
+
+        if imieK == x_imie or nazwiskoK == x_nazwisko or peselK == x_pesel or nipKlient == x_nip:
+            linia1 = tk.Label(ramka3, text=imieK, font=(
+                "Arial", 13, "italic", "bold"), fg="black")
+            linia2 = tk.Label(ramka3, text=nazwiskoK, font=(
+                "Arial", 13, "italic"), fg="black")
+            linia3 = tk.Label(ramka3, text=peselK, font=(
+                "Arial", 13, "italic"), fg="black")
+            linia4 = tk.Label(ramka3, text=nipK, font=(
+                "Arial", 13, "italic"), fg="black")
+            linia5 = tk.Label(ramka3, text=str(r[5]), font=(
+                "Arial", 13, "italic"), fg="black")
+            linia6 = tk.Label(ramka3, text=str(r[6]), font=(
+                "Arial", 13, "italic"), fg="black")
+            linia7 = tk.Label(ramka3, text=str(r[7]), font=(
+                "Arial", 13, "italic"), fg="black")
+            linia8 = tk.Label(ramka3, text=str(r[8]), font=(
+                "Arial", 13, "italic"), fg="black")
+            linia9 = tk.Label(ramka3, text=str(r[9]), font=(
+                "Arial", 13, "italic"), fg="black")
+            linia10 = tk.Label(ramka3, text=str(r[10]), font=(
+                "Arial", 13, "italic"), fg="black")
+            linia11 = tk.Label(ramka3, text=str(r[11]), font=(
+                "Arial", 13, "italic"), fg="black")
             textbox = tk.Text(ramka3, width=50, height=10)
             textbox.grid(row=12, column=1)
             textbox.insert(tk.END, "\n\n")
             textbox.insert(tk.END, str(r[12]), ("p"))
             textbox.tag_add("p", "1.0", "1.0")
             textbox.tag_config("p", foreground=kolorKlienta)
-            
+
             linia1.grid(row=1, column=1, sticky=W)
             linia2.grid(row=2, column=1, sticky=W)
             linia3.grid(row=3, column=1, sticky=W)
@@ -148,15 +164,13 @@ def wyszukaj_klienta():
             linia10.grid(row=10, column=1, sticky=W)
             linia11.grid(row=11, column=1, sticky=W)
         else:
-            tk.Label(ramka3, text="Brak rekordu!!!", font=("Arial", 13), fg="red", bg="black").grid(row=0, column=0)
+            tk.Label(ramka3, text="Brak rekordu!!!", font=(
+                "Arial", 13), fg="red", bg="black").grid(row=0, column=0)
 
-    tk.Button(ramka3,text = "wyczysc", command=ramka3.destroy).grid(row=13, column=1)
-                        
-        
+    tk.Button(ramka3, text="wyczysc", command=ramka3.destroy).grid(
+        row=13, column=1)
 
     conn.close()
-        
-
 
 
 # -------------------------------głowny program------------------------------
@@ -190,7 +204,6 @@ ramka1.pack(padx=10, pady=10, side=TOP)
 
 ramka2 = tk.LabelFrame(root, text="Dodaj klienta", padx=10, pady=10)
 ramka2.pack(padx=30, side=LEFT)
-
 
 
 # formularz wyszukiwania klienta
@@ -253,18 +266,18 @@ p16 = tk.Label(ramka2, text="Nr telefonu:", font=(
 p17 = tk.Label(ramka2, text="Uwagi:", font=("Arial", rozmiarCzcionki),
                fg=kolorCzcionki).grid(row=11, column=0, sticky=W)
 
-imieKlient=StringVar()
-nazwiskoKlient=StringVar()
-peselKlient=StringVar()
-nipKlient=StringVar()
-ulicaKlient=StringVar()
-nrUlicyKlient=StringVar()
-nrMieszkaniaKlient=StringVar()
-miastoKlient=StringVar()
-kodKlient=StringVar()
-emailKlient=StringVar()
-telefonKlient=StringVar()
-uwagiKlient=StringVar()
+imieKlient = StringVar()
+nazwiskoKlient = StringVar()
+peselKlient = StringVar()
+nipKlient = StringVar()
+ulicaKlient = StringVar()
+nrUlicyKlient = StringVar()
+nrMieszkaniaKlient = StringVar()
+miastoKlient = StringVar()
+kodKlient = StringVar()
+emailKlient = StringVar()
+telefonKlient = StringVar()
+uwagiKlient = StringVar()
 
 e5 = tk.Entry(ramka2, textvariable=imieKlient, width=30)
 e6 = tk.Entry(ramka2, textvariable=nazwiskoKlient, width=30)
