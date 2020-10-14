@@ -3,12 +3,8 @@
 import tkinter as tk
 from tkinter import *
 from tkinter import ttk
-from time import strftime
-from pathlib import Path
-from tkinter import Menu
 from tkinter.messagebox import showwarning
 from tkinter import messagebox
-from PIL import Image, ImageTk
 import sqlite3
 
 # -------------------------------definicje--------------------------------
